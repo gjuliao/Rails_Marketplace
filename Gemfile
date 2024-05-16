@@ -67,4 +67,5 @@ group :test do
 end
 
 # Added gems
+gem 'cssbundling-rails'
 gem 'rubocop', '>= 1.0', '< 2.0'
