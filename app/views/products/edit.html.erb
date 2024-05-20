@@ -1,0 +1,13 @@
+<h1>Edit product</h1>
+<%= @product.assistants %>
+
+<%= form_with model: @product do |form| %>
+  <%= form.label :name, "Products Name:" %><br>
+  <%= form.text_field :name %>
+  <%= form.label :description, "Products Description" %><br>
+  <%= form.text_area :description, size: "30x10" %>
+  <%= form.label :assistant, "Number of Assistants" %><br>
+  <%= form.number_field :assistant %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <%= form.submit %>
+<% end %>
