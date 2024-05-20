@@ -68,5 +68,5 @@ end
 
 # Added gems
 gem 'cssbundling-rails'
-gem 'rubocop', '>= 1.0', '< 2.0'
 gem 'devise', '~> 4.9'
+gem 'rubocop', '>= 1.0', '< 2.0'
