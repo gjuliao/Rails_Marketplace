@@ -1,2 +1,9 @@
-<%= @product.name %>
-<%= @product.assistants %>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= @product.name %></h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
+    <p class="card-text"><%= @product.description %></p>
+    <%= link_to 'Edit', edit_product_path, class: 'card-link' %>
+    <%= link_to 'Delete', product_path(@product), class: 'card-link', method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+</div>
