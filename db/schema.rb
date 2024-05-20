@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_20_204913) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "assistants"
+    t.integer "assistants", default: 0
     t.string "comments"
     t.integer "like", default: 0
     t.bigint "user_id", null: false
