@@ -2,11 +2,10 @@ class Comment < ApplicationRecord
   belongs_to :author, class_name: 'User', foreign_key: :author_id
   belongs_to :product
 
-  before_create :update_products_comments_count
-
-  private
+  after_create :update_products_comments_count
 
   def update_products_comments_count
-    product.comments_counter = product.comments.count
+    product.comments_counter = product.comments.count + 1
+    product.save
   end
 end
