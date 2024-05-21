@@ -3,7 +3,20 @@
     <h5 class="card-title"><%= @product.name %></h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
     <p class="card-text"><%= @product.description %></p>
-    <%= link_to 'Edit', edit_product_path, class: 'card-link' %>
-    <%= link_to 'Delete', product_path(@product), class: 'card-link', method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Edit', edit_user_product_path, class: 'card-link' %>
+    <%= link_to 'Delete', user_product_path(@product), class: 'card-link', method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
 </div>
+
+
+<%= link_to 'Leave a Comment', new_user_product_comment_path(current_user, @product) %>
+
+<p>Number of comments: <%= @product.comments.count %></p>
+
+<% @product.comments.each do |comment| %>
+  <%= comment.text %>
+<% end %>
+
+
+
+

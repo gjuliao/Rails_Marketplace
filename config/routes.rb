@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
-  root 'home#index'
   devise_for :users, path: '', path_names: { sign_up: 'sign_up', sign_in: 'sign_in' }
-  resources :products
+  root 'home#index'
+
+  resources :users do
+        resources :products do
+            resources :comments
+        end
+  end
+
+  # get "/users/:user_id/products", to: "products#index"
+  # get "/users/:user_id/products/:id/edit", to: "products#edit"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

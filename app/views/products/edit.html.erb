@@ -1,7 +1,7 @@
 <h1>Edit product</h1>
 <%= @product.assistants %>
 
-<%= form_with model: @product do |form| %>
+<%= form_with model: [current_user, @product], local: true do |form| %>
   <%= form.label :name, "Products Name:" %><br>
   <%= form.text_field :name %>
   <%= form.label :description, "Products Description" %><br>
