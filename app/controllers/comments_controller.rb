@@ -12,17 +12,16 @@ class CommentsController < ApplicationController
     end
 
     def create
-        product = Product.find_by(id: params[:owner_id])
-        @author = current_user
-        unless product
+        @product = Product.find(params[:product_id])
+        unless @product
             flash[:alert] = 'Sorry product not found.'
-            render product_path(product)
+            redirect_to user_product_path(current_user, @product)
         end
 
         @comment = Comment.create(comment_params)
         if @comment.save
-            flash[:notice] = 'Comment succesfully created'
-            redirect_to product_path(product)
+            flash.now[:notice] = 'Comment succesfully created'
+            redirect_to user_product_path(current_user, @product)
         else
             flash.now[:alert] = 'Sorry comment not created, try again.'
             render 'products/show'

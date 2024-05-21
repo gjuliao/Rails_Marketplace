@@ -3,8 +3,8 @@
 <%= form.label :text %>
 <%= form.text_field :text %>
 
-<%= form.hidden_field :user_id, value: current_user.id %>
-<%= form.hidden_field :product_id, value: params[:product_id] %>
+<%= form.hidden_field :author_id, value: @user.id %>
+<%= form.hidden_field :product_id, value: @product.id %>
 
  <%= form.submit %>
 
