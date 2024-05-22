@@ -6,10 +6,7 @@ class CommentsController < ApplicationController
         @user = current_user
     end
 
-    def show
-        @comments_product = Product.find_by(id: params[:owner_id])
-        @comments = product.comments
-    end
+    def show; end
 
     def create
         @product = Product.find(params[:product_id])

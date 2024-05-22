@@ -1,21 +1,32 @@
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title"><%= @product.name %></h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-    <p class="card-text"><%= @product.description %></p>
-    <%= link_to 'Edit', edit_user_product_path(current_user, @product), class: 'card-link' %>
-    <%= link_to 'Delete', user_product_path(current_user, @product), class: 'card-link', method: :delete, data: { confirm: 'Are you sure?' } %>
-  </div>
+ <div class="container">
+            <div class="row">
+                <!-- Blog entries-->
+                <div class="col-lg-8">
+                    <!-- Featured blog post-->
+                    <div class="card mb-4">
+                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                        <div class="card-body">
+                            <div class="small text-muted">January 1, 2023</div>
+                            <h2 class="card-title"><%= @product.name %></h2>
+                            <p class="card-text"><%= @product.description %></p>
+                            <%= link_to 'Leave a Comment', new_user_product_comment_path(current_user, @product), class: 'btn btn-info' %>
+                            <%= link_to 'Edit', edit_user_product_path(current_user, @product), class: 'btn btn-secondary' %>
+                            <%= link_to 'Delete', user_product_path(current_user, @product), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+                            <p>Comments: <%= @product.comments.count %></p>
+                        </div>
+                    </div>
+                </div>
+              </div>
 </div>
 
-
-<%= link_to 'Leave a Comment', new_user_product_comment_path(current_user, @product) %>
-
-<p>Number of comments: <%= @product.comments.count %></p>
-
-<% @product.comments.each do |comment| %>
-  <%= comment.text %>
-<% end %>
+<div class="container">
+  <% @product_association.each do |comment| %>
+    <%= comment.owner.fname %>
+    <% @product.comments.each do |info| %>
+        <%= info.text %>
+    <% end %>
+  <% end %>
+</div>
 
 
 

@@ -19,4 +19,8 @@ class Comment < ApplicationRecord
   def update_products_comments_count
     product.update(comments_counter: product.comments.count)
   end
+
+  def comments_author_name
+    author.fname
+  end
 end
