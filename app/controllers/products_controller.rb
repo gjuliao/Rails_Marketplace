@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.all
+    @user = current_user
   end
 
   def new
@@ -8,7 +9,8 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+    @user = current_user
+    @product = Product.includes(comments: :author).find(params[:id])
   end
 
   def create
@@ -30,7 +32,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     if @product.update!(product_params)
       flash[:notice] = 'Product was succesfully update!'
-      redirect_to @product
+      redirect_to user_product_path(current_user, @product)
     else
       flash[:alert] = 'There was an error updating the product.'
       render 'edit'
@@ -51,6 +53,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :assistants, :comments, :user_id)
+    params.require(:product).permit(:name, :description, :assistants, :comments)
   end
 end

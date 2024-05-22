@@ -1,25 +1,29 @@
 <h1>All Products</h1>
 
-<% @products.each do |product| %>
 
     <div class="container">
+        <!-- Row -->
         <div class="row">
-            <div class="col-12 text-center justify-content-center">
+        <% @products.each do |product| %>
+            <div class="col-3 text-center justify-content-center my-3">
+                <!-- Card -->
                 <div class="card">
-                    <h5 class="card-title"><%= product.name %></h5>
+                    <img src="..." class="card-img-top" alt="...">
+                    <!-- Card body -->
+                    <div class="card-body">
+                        <h5 class="card-title"><%= product.name %></h5>
+                        <p class="card-text"><%= product.description %></p>
+                        <h5 class="card-title"><%= link_to 'View Product', user_product_path(current_user, product) %></h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">Assistants:<%= product.assistants %> </h6>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">Likes:<%= product.like %> </h6>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">Comments:<%= product.comments.count %> </h6>
+                        <% if current_user %>
+                            <%= link_to 'Edit', edit_user_product_path(current_user, product), class: 'card-link' %>
+                            <%= link_to 'Delete', user_product_path(current_user, product), class: 'card-link', method: :delete, data: { confirm: 'Are you sure?' } %>
+                        <% end %>
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                    <p class="card-text"><%= product.description %></p>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">Assistants:<%= product.assistants %> </h6>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">Likes:<%= product.like %> </h6>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">Comments:<%= product.comments_counter %> </h6>
-                    <% if current_user %>
-                        <%= link_to 'Edit', edit_product_path(product), class: 'card-link' %>
-                        <%= link_to 'Delete', product_path(product), class: 'card-link', method: :delete, data: { confirm: 'Are you sure?' } %>
-                    <% end %>
-            </div>
+        <% end %>
         </div>
-
     </div>
-<% end %>

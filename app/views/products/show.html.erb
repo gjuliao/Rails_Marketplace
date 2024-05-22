@@ -1,9 +1,36 @@
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title"><%= @product.name %></h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-    <p class="card-text"><%= @product.description %></p>
-    <%= link_to 'Edit', edit_product_path, class: 'card-link' %>
-    <%= link_to 'Delete', product_path(@product), class: 'card-link', method: :delete, data: { confirm: 'Are you sure?' } %>
-  </div>
+ <div class="container">
+    <div class="row justify-content-center mt-5">
+        <!-- Blog entries-->
+        <div class="col-8">
+            <!-- Featured blog post-->
+            <div class="card mb-4">
+                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                <div class="card-body">
+                    <div class="small text-muted">January 1, 2023</div>
+                    <h2 class="card-title"><%= @product.name %></h2>
+                    <p class="card-text"><%= @product.description %></p>
+                    <%= link_to 'Leave a Comment', new_user_product_comment_path(current_user, @product), class: 'btn btn-info' %>
+                    <%= link_to 'Edit', edit_user_product_path(current_user, @product), class: 'btn btn-secondary' %>
+                    <%= link_to 'Delete', user_product_path(current_user, @product), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <p>Comments: <%= @product.comments.count %></p>
+                </div>
+            </div>
+            <div>
+              <% @product.comments.each do |comment| %>
+                <div class="card my-4">
+                  <div class="card-header">
+                    <%= comment.author.fname %>
+                  </div>
+                  <div class="card-body">
+                    <%= comment.text %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
+
