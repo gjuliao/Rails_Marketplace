@@ -10,8 +10,7 @@ class ProductsController < ApplicationController
 
   def show
     @user = current_user
-    @product = Product.find(params[:id])
-    @product_association = Product.includes(:comments).includes(comments: :author)
+    @product = Product.includes(comments: :author).find(params[:id])
   end
 
   def create

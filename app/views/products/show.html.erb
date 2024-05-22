@@ -1,7 +1,7 @@
  <div class="container">
             <div class="row">
                 <!-- Blog entries-->
-                <div class="col-lg-8">
+                <div class="col-8">
                     <!-- Featured blog post-->
                     <div class="card mb-4">
                         <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
@@ -20,12 +20,20 @@
 </div>
 
 <div class="container">
-  <% @product_association.each do |comment| %>
-    <%= comment.owner.fname %>
-    <% @product.comments.each do |info| %>
-        <%= info.text %>
-    <% end %>
-  <% end %>
+  <div class="row">
+    <div class="col-8">
+      <% @product.comments.each do |comment| %>
+        <div class="card">
+          <div class="card-header">
+            <%= comment.author.fname %>
+          </div>
+              <div class="card-body">
+                <%= comment.text %>
+              </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 

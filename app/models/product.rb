@@ -3,4 +3,8 @@ class Product < ApplicationRecord
   has_many :comments, dependent: :destroy, counter_cache: true
 
   validates :name, :description, :assistants, presence: true
+
+  def recent_comments
+    comments.order(created_at: :desc)
+  end
 end
