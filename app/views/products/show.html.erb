@@ -18,13 +18,17 @@
                       <%= form_with model: @like,  url: user_product_like_path(current_user, @product, @like), local: true, method: :delete do |form| %>
                           <%= form.hidden_field :product_id, value: @product.id %>
                           <%= form.hidden_field :user_id, value: current_user.id %>
-                        <%= form.submit 'Unlike', class: 'btn btn-secondary' %>
+                          <%= button_tag(type: 'submit', class: 'border-0 bg-none bg-white') do %>
+                            <i class="bi bi-bookmark-fill" style="font-size: 1.5rem; color: blue;"></i>
+                          <% end %>
                       <% end %>
                     <% else %>
                       <%= form_with model: Like.new,  url: user_product_likes_path(current_user, @product), local: true do |form| %>
                           <%= form.hidden_field :product_id, value: @product.id %>
                           <%= form.hidden_field :user_id, value: current_user.id %>
-                        <%= form.submit 'Like', class: 'btn btn-primary' %>
+                          <%= button_tag(type: 'submit', class: 'border-0 bg-none bg-white') do %>
+                            <i class="bi bi-bookmark" style="font-size: 1.5rem; color: blue;"></i>
+                          <% end %>
                       <% end %>
                     <% end %>
                 </div>
