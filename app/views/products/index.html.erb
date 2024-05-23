@@ -5,7 +5,7 @@
         <!-- Row -->
         <div class="row">
         <% @products.each do |product| %>
-            <div class="col-sm-4 col-12 text-center justify-content-center my-3">
+            <div class="col-sm-3 col-12 text-center justify-content-center my-3">
                 <!-- Card -->
                 <div class="card">
                     <img src="..." class="card-img-top" alt="...">
@@ -15,7 +15,7 @@
                         <p class="card-text"><%= product.description %></p>
                         <h5 class="card-title"><%= link_to 'View Product', user_product_path(current_user, product) %></h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary">Assistants:<%= product.assistants %> </h6>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Likes:<%= product.like %> </h6>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">Likes:<%= product.likes.count %> </h6>
                         <h6 class="card-subtitle mb-2 text-body-secondary">Comments:<%= product.comments.count %> </h6>
                         <% if current_user %>
                             <%= link_to 'Edit', edit_user_product_path(current_user, product), class: 'card-link' %>
