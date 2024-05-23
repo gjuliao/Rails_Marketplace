@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :products, foreign_key: 'owner_id'
-  has_many :comments, foreign_key: 'author_id'
+  has_many :products, dependent: :destroy, foreign_key: 'owner_id'
+  has_many :comments, dependent: :destroy, foreign_key: 'author_id'
+  has_many :likes, dependent: :destroy
 end
