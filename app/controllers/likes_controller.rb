@@ -18,13 +18,14 @@ class LikesController < ApplicationController
   end
 
   def destroy
+    @product = Product.find_by(id: params[:product_id])
     @like = Like.find(params[:id])
     if @like.destroy
       flash[:notice] = 'Like succesfully deleted'
-      # redirect to 'product_path'
+      redirect_to user_product_path(current_user, @product)
     else
       flash.now[:alert] = 'Like not deleted.  Please try again'
-      render 'product#show'
+      redirect_to root_path
     end
   end
 

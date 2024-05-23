@@ -14,10 +14,18 @@
                     <%= link_to 'Delete', user_product_path(current_user, @product), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
                     <p>Comments: <%= @product.comments.count %></p>
                     <p>Likes: <%= @product.likes.count %></p>
-                    <%= form_with model: Like.new,  url: user_product_likes_path(current_user, @product), local: true do |form| %>
-                        <%= form.hidden_field :product_id, value: @product.id %>
-                        <%= form.hidden_field :user_id, value: current_user.id %>
-                      <%= form.submit 'Like', class: 'btn btn-secondary' %>
+                    <% if @like %>
+                      <%= form_with model: @like,  url: user_product_like_path(current_user, @product, @like), local: true, method: :delete do |form| %>
+                          <%= form.hidden_field :product_id, value: @product.id %>
+                          <%= form.hidden_field :user_id, value: current_user.id %>
+                        <%= form.submit 'Unlike', class: 'btn btn-secondary' %>
+                      <% end %>
+                    <% else %>
+                      <%= form_with model: Like.new,  url: user_product_likes_path(current_user, @product), local: true do |form| %>
+                          <%= form.hidden_field :product_id, value: @product.id %>
+                          <%= form.hidden_field :user_id, value: current_user.id %>
+                        <%= form.submit 'Like', class: 'btn btn-primary' %>
+                      <% end %>
                     <% end %>
                 </div>
             </div>
