@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
   def show
     @user = current_user
     @product = Product.includes(comments: :author).find(params[:id])
+    @like = current_user.likes.find_by(product_id: @product.id)
   end
 
   def create

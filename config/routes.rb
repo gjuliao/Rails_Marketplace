@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :users do
-        resources :products do
-            resources :comments
-        end
+    resources :products do
+      resources :comments, :likes
+    end
   end
 
   # get "/users/:user_id/products", to: "products#index"
