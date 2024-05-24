@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     resources :products do
       resources :comments, :likes
     end
+    member do
+      get 'my_products', to: 'products#my_products'
+    end
   end
 
   # get "/users/:user_id/products", to: "products#index"
