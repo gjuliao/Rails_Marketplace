@@ -1,12 +1,12 @@
 <h1>Create a new product</h1>
 
-<%= form_with model: @product do |form| %>
+<%= form_with model: @product, url: user_products_path do |form| %>
   <%= form.label :name, "Products Name:" %><br>
   <%= form.text_field :name %>
   <%= form.label :description, "Products Description" %><br>
   <%= form.text_area :description, size: "30x10" %>
   <%= form.label :assistants, "Number of Assistants" %><br>
   <%= form.number_field :assistants %>
-  <%= form.hidden_field :user_id, value: current_user.id %>
+  <%= form.hidden_field :owner_id, value: current_user.id %>
   <%= form.submit %>
 <% end %>
