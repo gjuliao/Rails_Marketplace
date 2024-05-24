@@ -1,19 +1,16 @@
-<h1>All Products</h1>
-
-
-    <div class="container">
+    <div class="container my-5">
         <!-- Row -->
         <div class="row">
         <% @products.each do |product| %>
-            <div class="col-sm-3 col-12 text-center justify-content-center my-3">
+            <div class="col-sm-4 col-12 justify-content-center my-3">
                 <!-- Card -->
                 <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
+                    <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
                     <!-- Card body -->
                     <div class="card-body">
                         <h5 class="card-title"><%= product.name %></h5>
                         <p class="card-text"><%= product.description %></p>
-                        <h5><%= link_to 'Learn more', user_product_path(current_user, product), style: 'text-decoration: none;' %></h5>
+                        <p><%= link_to 'Learn more', user_product_path(current_user, product), style: 'text-decoration: none;' %></p>
                         <div class="d-flex justify-content-between">
                              <div>
                                 <% if current_user %>
