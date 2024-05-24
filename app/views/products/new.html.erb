@@ -1,12 +1,19 @@
-<h1>Create a new product</h1>
-
-<%= form_with model: @product do |form| %>
-  <%= form.label :name, "Products Name:" %><br>
-  <%= form.text_field :name %>
-  <%= form.label :description, "Products Description" %><br>
-  <%= form.text_area :description, size: "30x10" %>
-  <%= form.label :assistants, "Number of Assistants" %><br>
-  <%= form.number_field :assistants %>
-  <%= form.hidden_field :user_id, value: current_user.id %>
-  <%= form.submit %>
-<% end %>
+<div class="container my-4">
+<h1 class="my-4 mx-auto text-center">Create a new product</h1>
+  <div class="col-12 col-md-6 mx-auto">
+  <%= form_with model: @product, url: user_products_path do |form| %>
+    <%= form.label :name, "Products Name:", class: "form-label" %><br>
+    <%= form.text_field :name, class: "form-control" %>
+    <%= form.label :description, "Products Description", class: "form-label" %><br>
+    <%= form.text_area :description, size: "30x10", class: "form-control" %>
+    <%= form.label :assistants, "Number of Assistants", class: "form-label" %><br>
+    <%= form.number_field :assistants, class: "form-control" %>
+    <%= form.hidden_field :owner_id, value: current_user.id %>
+    <div class="mt-4">
+      <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+        <i class="bi bi-send"></i>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+</div>

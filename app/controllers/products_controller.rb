@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
     product = Product.create(product_params)
     if product.save
       flash[:notice] = 'Product was succesfully saved!'
-      redirect_to product
+      redirect_to user_product_path(current_user, product)
     else
       flash[:alert] = 'There was an error creating the product.'
       render 'new'
@@ -54,6 +54,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :assistants, :comments)
+    params.require(:product).permit(:name, :description, :assistants, :comments, :owner_id)
   end
 end
