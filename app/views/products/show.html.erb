@@ -6,34 +6,43 @@
             <div class="card mb-4">
                 <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
                 <div class="card-body">
-                    <div class="small text-muted">January 1, 2023</div>
+                    <div class="small text-muted"><p><%= @product.created_at %></p></div>
                     <h2 class="card-title"><%= @product.name %></h2>
                     <p class="card-text"><%= @product.description %></p>
-                    <%= link_to 'Leave a Comment', new_user_product_comment_path(current_user, @product), class: 'btn btn-info' %>
-                    <%= link_to 'Edit', edit_user_product_path(current_user, @product), class: 'btn btn-secondary' %>
-                    <%= link_to 'Delete', user_product_path(current_user, @product), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
-                    <p>Comments: <%= @product.comments.count %></p>
-                    <p>Likes: <%= @product.likes.count %></p>
-                    <% if @like %>
-                      <%= form_with model: @like,  url: user_product_like_path(current_user, @product, @like), local: true, method: :delete do |form| %>
-                          <%= form.hidden_field :product_id, value: @product.id %>
-                          <%= form.hidden_field :user_id, value: current_user.id %>
-                          <%= button_tag(type: 'submit', class: 'border-0 bg-white') do %>
-                            <i class="bi bi-bookmark-fill" style="font-size: 1.5rem; color: blue;"></i>
-                          <% end %>
-                      <% end %>
-                    <% else %>
-                      <%= form_with model: Like.new,  url: user_product_likes_path(current_user, @product), local: true do |form| %>
-                          <%= form.hidden_field :product_id, value: @product.id %>
-                          <%= form.hidden_field :user_id, value: current_user.id %>
-                          <%= button_tag(type: 'submit', class: 'border-0 bg-white') do %>
-                            <i class="bi bi-bookmark" style="font-size: 1.5rem; color: blue;"></i>
-                          <% end %>
-                      <% end %>
+                    <%= link_to edit_user_product_path(current_user, @product), class: 'btn btn-secondary bg-white border-0' do %>
+                      <i class="bi bi-pencil-square" style="font-size: 1.5rem; color: blue;"></i>
                     <% end %>
+                    <%= link_to user_product_path(current_user, @product), class: 'btn btn-danger border-0 bg-white', method: :delete, data: { confirm: 'Are you sure?' } do %>
+                      <i class="bi bi-trash" style="font-size: 1.5rem; color: red;"></i>
+                    <% end %>
+                    <div class="d-flex flex-row flex-row-reverse">
+                      <p class="mx-4"><i class="bi bi-chat-left-dots" style="font-size: 1.5rem; color: blue;"></i> <%= @product.comments.count %></p>
+                      <% if @like %>
+                      <div class="d-flex align-items-center">
+                        <%= form_with model: @like,  url: user_product_like_path(current_user, @product, @like), local: true, method: :delete do |form| %>
+                            <%= form.hidden_field :product_id, value: @product.id %>
+                            <%= form.hidden_field :user_id, value: current_user.id %>
+                            <%= button_tag(type: 'submit', class: 'border-0 bg-white') do %>
+                              <i class="bi bi-hand-thumbs-up-fill" style="font-size: 1rem; color: blue;"></i>
+                            <% end %>
+                        <% end %>
+                        <div class="pt-5"><%= @product.likes.count %></div>
+                      </div>
+                      <% else %>
+                        <%= form_with model: Like.new,  url: user_product_likes_path(current_user, @product), local: true do |form| %>
+                            <%= form.hidden_field :product_id, value: @product.id %>
+                            <%= form.hidden_field :user_id, value: current_user.id %>
+                            <%= button_tag(type: 'submit', class: 'border-0 bg-white') do %>
+                              <i class="bi bi-hand-thumbs-up" style="font-size: 1.5rem; color: blue;"></i>
+                            <% end %>
+                        <% end %>
+                        <p><%= @product.likes.count %></p>
+                      <% end %>
+                    </div>
                 </div>
             </div>
             <div>
+              <%= link_to 'Add a Comment', new_user_product_comment_path(current_user, @product), class: 'btn btn-info' %>
               <% @product.comments.each do |comment| %>
                 <div class="card my-4">
                   <div class="card-header">
