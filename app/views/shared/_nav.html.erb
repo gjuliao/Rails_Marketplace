@@ -10,6 +10,9 @@
                         <li class="nav-item">
                             <%= link_to 'Products', user_products_path(current_user), class: 'nav-link' %>
                         </li>
+                        <li class="nav-item">
+                            <%= link_to 'Add a product', new_user_product_path(current_user), class: 'nav-link' %>
+                        </li>
                         <% if user_signed_in? %>
                         <%= link_to 'Log Out', destroy_user_session_path, class: 'nav-link', method: :delete %>
                         <% else %>
