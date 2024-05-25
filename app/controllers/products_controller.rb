@@ -51,6 +51,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  def my_products
+    @users_products = current_user.products.all
+  end
+
   private
 
   def product_params
