@@ -12,7 +12,7 @@
                         </li>
                         <% if user_signed_in? %>
                             <li class="nav-item dropdown">
-                                <%= link_to 'My Profile', '#', class: 'nav-link dropdown-toggle', role: "button", data: { bs_toggle: 'dropdown', aria_expanded: 'false' } %>
+                                <%= link_to 'My Profile', '', class: 'nav-link dropdown-toggle', role: "button", data: { bs_toggle: 'dropdown', aria_expanded: 'false' } %>
                                 <ul class="dropdown-menu">
                                     <li class="dropdown-item">
                                         <%= link_to 'Add a product', new_user_product_path(current_user), class: 'dropdown-item' %>
