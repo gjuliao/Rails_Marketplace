@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_22_224651) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_25_172431) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_224651) do
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_comments_on_author_id"
     t.index ["product_id"], name: "index_comments_on_product_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer "total_sits", default: 0
+    t.integer "remaining_sits", default: 0
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_events_on_product_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -62,6 +75,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_224651) do
 
   add_foreign_key "comments", "products"
   add_foreign_key "comments", "users", column: "author_id"
+  add_foreign_key "events", "products"
   add_foreign_key "likes", "products"
   add_foreign_key "likes", "users"
   add_foreign_key "products", "users", column: "owner_id"

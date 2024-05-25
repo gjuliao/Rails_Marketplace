@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :products do
-      resources :comments, :likes
+      resources :comments, :likes, :events
     end
     member do
       get 'my_products', to: 'products#my_products'
