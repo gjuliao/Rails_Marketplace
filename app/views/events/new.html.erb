@@ -3,13 +3,13 @@
   <div class="col-12 col-md-6 mx-auto">
   <%= form_with model: @event, url: new_user_product_event_path do |form| %>
     <%= form.label :start_date, "Start date:", class: "form-label" %><br>
-    <%= form.datetime_field :start_date, class: "form-control" %>
+    <%= form.date_field :start_date, class: "form-control" %>
     <%= form.label :end_date, "End date:", class: "form-label" %><br>
-    <%= form.datetime_field :end_date, class: "form-control" %>
+    <%= form.date_field :end_date, class: "form-control" %>
     <%= form.label :start_time, "Start time:", class: "form-label" %><br>
-    <%= form.datetime_field :start_time, class: "form-control" %>
+    <%= form.time_field :start_time, class: "form-control" %>
     <%= form.label :end_time, "End time:", class: "form-label" %><br>
-    <%= form.datetime_field :end_time, class: "form-control" %>
+    <%= form.time_field :end_time, class: "form-control" %>
     <%= form.label :total_sits, "Total sits:", class: "form-label" %><br>
     <%= form.number_field :total_sits, class: "form-control" %>
     <%= form.hidden_field :remaining_sits, value: 0 %><br>
