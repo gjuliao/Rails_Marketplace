@@ -1,10 +1,10 @@
 class CreateEvents < ActiveRecord::Migration[7.1]
   def change
     create_table :events do |t|
-      t.datetime :start_date
-      t.datetime :end_date
-      t.datetime :start_time
-      t.datetime :end_time
+      t.date :start_date
+      t.date :end_date
+      t.time :start_time
+      t.time :end_time
       t.integer :total_sits, default: 0
       t.integer :remaining_sits, default: 0
       t.references :product, null: false, foreign_key: true
