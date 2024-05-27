@@ -2,6 +2,8 @@
 <%= @product.assistants %>
 
 <%= form_with model: [current_user, @product], local: true do |form| %>
+  <%= form.label :category_id, "Select category:", class: "form-label" %><br>
+  <%= form.collection_select :category_id, Category.all, :id, :name, prompt: 'Select category' %>
   <%= form.label :name, "Products Name:" %><br>
   <%= form.text_field :name %>
   <%= form.label :description, "Products Description" %><br>
