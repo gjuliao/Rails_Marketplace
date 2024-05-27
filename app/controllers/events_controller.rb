@@ -40,7 +40,6 @@ class EventsController < ApplicationController
     end
 
     def destroy
-      byebug
       @event = Event.find(params[:id])
       @product = Product.find(params[:product_id])
       if @event.destroy!
@@ -52,10 +51,15 @@ class EventsController < ApplicationController
       end
     end
 
+    def my_events
+      @users_events = Event.includes(:product).where(user_id: current_user.id)
+    end
+
     private
 
     def event_params
       params.require(:event)
-        .permit(:start_date, :end_date, :start_time, :end_time, :total_sits, :product_id)
+        .permit(:start_date, :end_date, :start_time, :end_time, :total_sits, :product_id, :user_id)
     end
+
 end
