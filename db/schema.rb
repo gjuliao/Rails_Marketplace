@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_25_172431) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_27_145816) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,7 +34,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_25_172431) do
     t.bigint "product_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["product_id"], name: "index_events_on_product_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -76,6 +78,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_25_172431) do
   add_foreign_key "comments", "products"
   add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "events", "products"
+  add_foreign_key "events", "users"
   add_foreign_key "likes", "products"
   add_foreign_key "likes", "users"
   add_foreign_key "products", "users", column: "owner_id"
