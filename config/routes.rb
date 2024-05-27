@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end
     member do
       get 'my_products', to: 'products#my_products'
+      get 'my_events', to: 'events#my_events'
     end
   end
 
