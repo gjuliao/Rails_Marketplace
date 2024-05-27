@@ -1,0 +1,17 @@
+<div class="container">
+    <h1>My Events</h1>
+    <div class="row">
+        <% if @users_events.any? %>
+            <ul>
+                <% @users_events.each do |event| %>
+                    <li><%= event.product.name %></li>
+                    <li><%= event.id %></li>
+                    <li><%= event.start_date %></li>
+                    <li><%= event.end_date %></li>
+                <% end %>
+            </ul>
+        <% else %>
+            <p>No events yet</p>
+        <% end %>
+    </div>
+</div>
