@@ -39,6 +39,19 @@ class EventsController < ApplicationController
       end
     end
 
+    def destroy
+      byebug
+      @event = Event.find(params[:id])
+      @product = Product.find(params[:product_id])
+      if @event.destroy!
+        flash[:notice] = 'Event deleted succesfully'
+        redirect_to user_product(current_user, @product)
+      else
+        flash[:alert] = 'Event not succesfully deleted'
+        redirect_to user_product_event_path(current_user, @product, @event)
+      end
+    end
+
     private
 
     def event_params
