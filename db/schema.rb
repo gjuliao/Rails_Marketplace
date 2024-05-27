@@ -10,16 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_27_172918) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_27_174609) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.bigint "product_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_categories_on_product_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -66,7 +64,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_27_172918) do
     t.datetime "updated_at", null: false
     t.integer "comments_counter", default: 0
     t.integer "likes_counter", default: 0
-    t.bigint "category_id"
+    t.bigint "category_id", null: false
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["owner_id"], name: "index_products_on_owner_id"
   end
@@ -85,7 +83,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_27_172918) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "categories", "products"
   add_foreign_key "comments", "products"
   add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "events", "products"

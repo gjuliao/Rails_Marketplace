@@ -2,8 +2,6 @@
 
 one:
   name: MyString
-  product: one
 
 two:
   name: MyString
-  product: two
