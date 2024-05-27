@@ -13,6 +13,7 @@
     <%= form.label :total_sits, "Total sits:", class: "form-label" %><br>
     <%= form.number_field :total_sits, class: "form-control" %>
     <%= form.hidden_field :product_id, value: @product.id, class: "form-control" %>
+    <%= form.hidden_field :user_id, value: current_user.id, class: "form-control" %>
     <div class="mt-4">
       <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
         <i class="bi bi-send"></i>
