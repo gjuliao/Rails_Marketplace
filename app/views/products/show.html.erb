@@ -46,7 +46,12 @@
                 </div>
             </div>
             <div>
-              <%= link_to 'Add a Comment', new_user_product_comment_path(current_user, @product), class: 'btn btn-info' %>
+              <div class="d-flex">
+                <%= link_to 'Add a Comment', new_user_product_comment_path(current_user, @product), class: 'btn btn-info' %>
+                <% if current_user.id = @product.owner_id %>
+                  <%= link_to 'Create Event', new_user_product_event_path(current_user, @product), class: 'btn btn-info mx-2' %>
+                <% end %>
+              </div>
               <% @product.comments.each do |comment| %>
                 <div class="card my-4">
                   <div class="card-header">

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_date: 2024-05-25 12:24:31
+  end_date: 2024-05-25 12:24:31
+  start_time: 2024-05-25 12:24:31
+  end_time: 2024-05-25 12:24:31
+  total_sits: 1
+  remaining_sits: 1
+  product: one
+
+two:
+  start_date: 2024-05-25 12:24:31
+  end_date: 2024-05-25 12:24:31
+  start_time: 2024-05-25 12:24:31
+  end_time: 2024-05-25 12:24:31
+  total_sits: 1
+  remaining_sits: 1
+  product: two

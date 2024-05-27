@@ -1,0 +1,24 @@
+<div class="container my-4">
+<h1 class="my-4 mx-auto text-center">Create a new event for product: <%= @product.name %></h1>
+  <div class="col-12 col-md-6 mx-auto">
+  <%= form_with model: @event, url: user_product_events_path do |form| %>
+    <%= form.label :start_date, "Start date:", class: "form-label" %><br>
+    <%= form.date_field :start_date, class: "form-control" %>
+    <%= form.label :end_date, "End date:", class: "form-label" %><br>
+    <%= form.date_field :end_date, class: "form-control" %>
+    <%= form.label :start_time, "Start time:", class: "form-label" %><br>
+    <%= form.time_field :start_time, class: "form-control" %>
+    <%= form.label :end_time, "End time:", class: "form-label" %><br>
+    <%= form.time_field :end_time, class: "form-control" %>
+    <%= form.label :total_sits, "Total sits:", class: "form-label" %><br>
+    <%= form.number_field :total_sits, class: "form-control" %>
+    <%= form.hidden_field :product_id, value: @product.id, class: "form-control" %>
+    <%= form.hidden_field :user_id, value: current_user.id, class: "form-control" %>
+    <div class="mt-4">
+      <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+        <i class="bi bi-send"></i>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+ <div class="container">
+    <div class="row justify-content-center mt-5">
+        <!-- Blog entries-->
+        <div class="col-8">
+            <!-- Featured blog post-->
+            <div class="card mb-4">
+                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                <div class="card-body">
+                    <h2 class="card-title">Product name: <%= @product.name %></h2>
+                    <div class="small text-muted"><p><%= @event.created_at %></p></div>
+                    <div class="row">
+                        <!-- Start row -->
+                        <div class="col">
+                            <p class="card-text">Start Date: <span class="text-muted"><%= @event.start_date %></span></p>
+                            <p class="card-text">Start time: <span class="text-muted"><%= @event.start_time %></span></p>
+                            <p class="card-text">Total sits: <span class="text-muted"><%= @event.total_sits %></span></p>
+                        </div>
+                        <!-- End row -->
+                        <div class="col">
+                            <p class="card-text">End Date: <span class="text-muted"><%= @event.end_date %></span></p>
+                            <p class="card-text">End time: <span class="text-muted"><%= @event.end_time %></span></p>
+                            <p class="card-text">Remaining sits: <span class="text-muted"><%= @event.remaining_sits %></span></p>
+                        </div>
+                    </div>
+                    <%= link_to edit_user_product_event_path(current_user, @product), class: 'btn btn-secondary bg-white border-0' do %>
+                      <i class="bi bi-pencil-square" style="font-size: 1.5rem; color: blue;"></i>
+                    <% end %>
+                    <%= link_to user_product_event_path(current_user, @product, @event), class: 'btn btn-danger border-0 bg-white', method: :delete, data: { confirm: 'Are you sure?', turbolinks: false } do %>
+                      <i class="bi bi-trash" style="font-size: 1.5rem; color: red;"></i>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

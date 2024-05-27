@@ -1,0 +1,19 @@
+<div class="container my-4">
+    <h1>My Events</h1>
+    <div class="row">
+        <div class="col-sm-12 col-md-8">
+        <% if @users_events.any? %>
+            <% @users_events.each do |event| %>
+                <div class="card my-3">
+                        <div class="card-header"><%= event.product.name %></div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Start date: <%= event.start_date %> | End date: <%= event.end_date %></li>
+                        </ul>
+                </div>
+            <% end %>
+        </div>
+        <% else %>
+            <p>No events yet</p>
+        <% end %>
+    </div>
+</div>
