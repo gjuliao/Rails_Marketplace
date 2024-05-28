@@ -40,7 +40,7 @@
                                                     <div class="small text-muted">January 1, 2023</div>
                                                     <h2 class="card-title h4"><%= result.name %></h2>
                                                     <p class="card-text"><%= result.description %></p>
-                                                    <a class="btn btn-primary" href="#!">Read more →</a>
+                                                    <%= link_to 'Read more', user_product_path(result.owner_id, result), class: "btn btn-primary" %>
                                                 </div>
                                             </div>
                                         </div>
