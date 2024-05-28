@@ -5,12 +5,12 @@ class HomeController < ApplicationController
     @q_events = Event.ransack(params[:q])
     @q_products = Product.ransack(params[:q])
 
-     @events = @q_events.result(distinct: true)
-     @products = @q_products.result(distinct: true)
+    @events = @q_events.result(distinct: true)
+    @products = @q_products.result(distinct: true)
 
-     @results = @events + @products
+    @results = @events + @products
 
-     @results = @results.sort_by(&:created_at)
-     @categories = Category.all
+    @results = @results.sort_by(&:created_at)
+    @categories = Category.all
   end
 end
