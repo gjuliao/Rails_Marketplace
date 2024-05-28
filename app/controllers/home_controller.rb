@@ -12,5 +12,7 @@ class HomeController < ApplicationController
 
     @results = @results.sort_by(&:created_at)
     @categories = Category.all
+
+    @all_products = Product.all
   end
 end
