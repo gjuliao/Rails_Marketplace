@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'all_products', to: 'products#all_products', as: 'all_products'
+  get 'all_events', to: 'events#all_events', as: 'all_events'
+
   # get "/users/:user_id/products", to: "products#index"
   # get "/users/:user_id/products/:id/edit", to: "products#edit"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
