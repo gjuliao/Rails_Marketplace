@@ -7,9 +7,6 @@
                         <%= link_to 'Home', root_path, class: 'nav-link' %>
                         <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                        <li class="nav-item">
-                            <%= link_to 'Products', user_products_path(current_user), class: 'nav-link' %>  
-                        </li>
                         <% if user_signed_in? %>
                             <li class="nav-item dropdown">
                                 <%= link_to 'My Profile', root_path, class: 'nav-link dropdown-toggle', role: "button", data: { bs_toggle: 'dropdown', aria_expanded: 'false' } %>
