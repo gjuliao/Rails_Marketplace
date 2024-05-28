@@ -18,4 +18,8 @@ class Product < ApplicationRecord
   def set_default_category
     self.category ||= Category.find_or_create_by(name: 'Default')
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["assistants", "category_id", "comments_counter", "created_at", "description", "id", "id_value", "like", "likes_counter", "name", "owner_id", "updated_at"]
+  end
 end
