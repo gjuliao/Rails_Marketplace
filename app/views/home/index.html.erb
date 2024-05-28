@@ -86,13 +86,33 @@
                 </div>
                 <!-- Side widgets-->
                 <div class="col-lg-4">
-                    <!-- Search widget-->
+                    <!-- Product Search widget-->
                     <div class="card mb-4">
-                        <div class="card-header">Search</div>
+                        <div class="card-header">Search Products</div>
                         <div class="card-body">
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                                <%= search_form_for @q_products, url: :all_products do |f| %>
+                                    <%= f.label :name_cont %>
+                                    <%= f.search_field :name_cont %>
+                                    <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+                                        <i class="bi bi-send">GO</i>
+                                    <% end %>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Event Search widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">Search Events</div>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <%= search_form_for @q_products, url: :all_products do |f| %>
+                                    <%= f.label :name_cont %>
+                                    <%= f.search_field :name_cont %>
+                                    <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+                                        <i class="bi bi-send">GO</i>
+                                    <% end %>
+                                <% end %>
                             </div>
                         </div>
                     </div>
@@ -103,18 +123,19 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">Web Design</a></li>
-                                        <li><a href="#!">HTML</a></li>
-                                        <li><a href="#!">Freebies</a></li>
+                                        <% @categories.each do |el|%>
+                                            <li><a href="#!"><%= el.name %></a></li>
+                                        <% end %>
                                     </ul>
                                 </div>
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">JavaScript</a></li>
-                                        <li><a href="#!">CSS</a></li>
-                                        <li><a href="#!">Tutorials</a></li>
+                                        <% @categories.each do |el|%>
+                                            <li><a href="#!"><%= el.name %></a></li>
+                                        <% end %>
                                     </ul>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
