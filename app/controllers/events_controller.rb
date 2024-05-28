@@ -54,6 +54,10 @@ class EventsController < ApplicationController
     @users_events = Event.includes(:product).where(user_id: current_user.id)
   end
 
+  def all_events
+    @events = Event.all
+  end
+
   private
 
   def event_params
