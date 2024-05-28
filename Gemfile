@@ -70,5 +70,6 @@ end
 gem 'cssbundling-rails'
 gem 'devise', '~> 4.9'
 gem 'rubocop', '>= 1.0', '< 2.0'
+gem 'ransack'
 
 gem 'byebug', '~> 11.1', groups: %i[development test]
