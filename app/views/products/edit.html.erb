@@ -1,13 +1,42 @@
-<h1>Edit product</h1>
-<%= @product.assistants %>
+<div class="container my-4">
+<h1 class="my-4 mx-auto text-center">Edit product</h1>
+  <div class="col-12 col-md-6 mx-auto">
 
-<%= form_with model: [current_user, @product], local: true do |form| %>
-  <%= form.label :name, "Products Name:" %><br>
-  <%= form.text_field :name %>
-  <%= form.label :description, "Products Description" %><br>
-  <%= form.text_area :description, size: "30x10" %>
-  <%= form.label :assistants, "Number of Assistants" %><br>
-  <%= form.number_field :assistants %>
-  <%= form.hidden_field :user_id, value: current_user.id %>
-  <%= form.submit %>
-<% end %>
+    <%= form_with model: [current_user, @product], local: true do |form| %>
+
+      <% if @product.errors.any? %>
+          <div>
+            <h2><%= pluralize(product.errors.count, 'error') %> </h2>
+            <ul>
+              <% product.errors_full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <div class="d-flex justify-content-between my-3">
+        <%= form.label :category_id, "Select category:", class: "form-label" %><br>
+        <%= form.collection_select :category_id, Category.all, :id, :name, prompt: 'Default category', class: "form-control" %>
+      </div>
+      <div class="my-3">
+        <%= form.label :name, "Products Name:", class: "form-label" %><br>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+      <div class="my-3">
+        <%= form.label :description, "Products Description", class: "form-label" %><br>
+        <%= form.text_area :description, size: "30x10", class: "form-control" %>
+      </div>
+      <div class="my-3">
+        <%= form.label :assistants, "Number of Assistants", class: "form-label" %><br>
+        <%= form.number_field :assistants, class: "form-control" %>
+      </div>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <div class="mt-4">
+      <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+          <i class="bi bi-send"></i>
+      <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
