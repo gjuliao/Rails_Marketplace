@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  
   def index
     @products = Product.all
     @user = current_user
@@ -53,6 +54,10 @@ class ProductsController < ApplicationController
 
   def my_products
     @users_products = current_user.products.all
+  end
+
+  def all_products
+    @products = Product.all
   end
 
   private
