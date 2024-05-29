@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-
   def index
     @product = Product.find(params[:product_id])
     @user = User.find(params[:user_id])
