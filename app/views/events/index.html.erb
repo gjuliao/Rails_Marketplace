@@ -6,7 +6,7 @@
             <div class="card w-50 my-4 border-0 shadow p-3 mb-5 bg-body-tertiary rounded">
                 <div class="card-header d-flex justify-content-between">
                     <h1><%= @product.name %></h1>
-                    <p><%= link_to 'Buy', new_user_product_booking_path(@user, @product, event) %></p>
+                    <p><%= link_to 'Buy', new_user_product_event_booking_path(@user, @product, event) %></p>
                 </div>
                 <div class="card-body">
                     <div class="col d-flex justify-content-between">
