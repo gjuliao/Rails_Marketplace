@@ -4,7 +4,7 @@
         <div class="col-8">
             <!-- Featured blog post-->
             <div class="card mb-4 border-0 shadow p-3 mb-5 bg-body-tertiary rounded">
-                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                <a href="#!"><img class="w-100" src="https://picsum.photos/id/73/900/600" style=" height: 500px"/></a>
                 <div class="card-body">
                     <div class="small text-muted"><p><%= @product.category.name %></p></div>
                     <h2 class="card-title"><%= @product.name %></h2>
@@ -64,11 +64,11 @@
                 <% end %>
               </div>
               <% @product.comments.each do |comment| %>
-                <div class="card my-4 border border-light-subtle">
-                  <div class="card-header">
-                    <%= comment.author.fname %>
+                <div class="card my-5 border-0 shadow p-3 mb-5 bg-body-tertiary">
+                  <div class="card-header border-0">
+                    <p><span class="fw-bold">Author:</span> <%= comment.author.fname %></p>
                   </div>
-                  <div class="card-body">
+                  <div class="card-body border-0">
                     <%= comment.text %>
                   </div>
                 </div>
