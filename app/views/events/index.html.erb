@@ -1,0 +1,28 @@
+
+<div class="container my-4">
+    <h1>All <%= @product.name %> events by <%= @user.fname %></h1>
+    <div class="row">
+        <% @events.each do |event| %>
+            <div class="card w-50 my-4 border-0 shadow p-3 mb-5 bg-body-tertiary rounded">
+                <div class="card-header d-flex justify-content-between">
+                    <h1><%= @product.name %></h1>
+                    <p><%= link_to 'Buy', new_user_product_booking_path(@user, @product, event) %></p>
+                </div>
+                <div class="card-body">
+                    <div class="col d-flex justify-content-between">
+                        <p class="small text-muted">Start date: <%= event.start_date %></p>
+                        <p class="small text-muted">End date:<%= event.end_date %></p>
+                    </div>
+                    <div class="col d-flex justify-content-between">
+                        <p class="small text-muted">Start time: <%= event.start_time %></p>
+                        <p class="small text-muted">End time:<%= event.end_time %>
+                    </div>
+                    <div class="col d-flex justify-content-between">
+                        <p class="small text-muted">Total sits: <%= event.total_sits %></p>
+                        <p class="small text-muted">Remaining sits:<%= event.remaining_sits %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
