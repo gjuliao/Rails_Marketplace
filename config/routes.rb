@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :products do
-      resources :comments, :likes, :events, :bookings
+      resources :comments
+      resources :likes
+      resources :events do
+        resources :bookings, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+      end
     end
     member do
       get 'my_products', to: 'products#my_products'
