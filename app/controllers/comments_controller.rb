@@ -1,14 +1,13 @@
 class CommentsController < ApplicationController
+  before_action :find_product, only: %w[new create]
   def new
     @comment = Comment.new
-    @product = Product.find(params[:product_id])
     @user = current_user
   end
 
   def show; end
 
   def create
-    @product = Product.find(params[:product_id])
     unless @product
       flash[:alert] = 'Sorry product not found.'
       redirect_to user_product_path(current_user, @product)
@@ -28,5 +27,9 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:text, :product_id, :author_id)
+  end
+
+  def find_product
+    @product = Product.find(params[:product_id])
   end
 end
