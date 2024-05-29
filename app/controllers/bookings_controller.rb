@@ -1,13 +1,13 @@
 class BookingsController < ApplicationController
+  before_action :find_event, only: %w[new create purchase_event]
+  before_action :find_product, only: %w[new create purchase_event]
+
   def new
     @booking = Booking.new
-    @event = Event.find(params[:event_id])
   end
 
   def create
     @booking = Booking.create(bookings_params)
-    @event = Event.find(params[:event_id])
-    @product = Product.find(params[:product_id])
     if @booking.save!
       flash[:notice] = 'Booking created succesfully'
       redirect_to root_path
@@ -17,14 +17,19 @@ class BookingsController < ApplicationController
     end
   end
 
-  def purchase_event
-    @event = params[:event_id]
-    @product = params[:product_id]
-  end
+  def purchase_event; end
 
   private
 
   def bookings_params
     params.require(:booking).permit(:no_of_tickets, :event_id, :customer_id)
+  end
+
+  def find_event
+    @event = Event.find(params[:event_id])
+  end
+
+  def find_product
+    @product = Product.find(params[:product_id])
   end
 end
