@@ -49,9 +49,9 @@
             </div>
             <div>
               <% if @product.events.any? %>
-                <div class="d-flex my-4">
+                <div class="d-flex my-4 justify-content-between">
                     <%= link_to 'Add a Comment', new_user_product_comment_path(current_user, @product), class: 'btn btn-info' %>
-                    <%= link_to 'View product events', user_product_events_path(@product.owner_id, @product ), class: 'btn btn-info' %>
+                    <%= link_to 'View product events', user_product_events_path(@product.owner_id, @product ), class: 'btn btn-info ml-auto' %>
                   <% else %>
                 <div class="my-4">
                     <%= link_to 'Add a Comment', new_user_product_comment_path(current_user, @product), class: 'btn btn-info' %>
