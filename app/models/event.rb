@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :product
   belongs_to :user
+  has_many :bookings
 
   def self.ransackable_associations(_auth_object = nil)
     %w[product user]

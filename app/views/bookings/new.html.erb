@@ -1,0 +1,19 @@
+
+<div class="container">
+    <h1>Purchase sits</h1>
+    <div class="row">
+        <div class="w-50">
+            <%= form_with model: @booking, url: user_product_event_bookings_path  do |form| %>
+                    <%= form.label :no_of_sits, 'Select No of Sits', class: "form-label" %>
+                <div class="d-flex">
+                    <%= form.number_field :no_of_tickets, class: "form-control" %>
+                    <%= form.hidden_field :customer_id, value: current_user.id %>
+                    <%= form.hidden_field :event_id, value: @event.id %>
+                    <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+                        <i class="bi bi-send"></i>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
