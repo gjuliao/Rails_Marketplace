@@ -1,10 +1,10 @@
 class LikesController < ApplicationController
+  before_action :find_product, only: %w[create destroy]
   def new
     @like = Like.new
   end
 
   def create
-    @product = Product.find_by(id: params[:product_id])
     @user = User.find_by(id: params[:user_id])
     @like = Like.create(like_params)
     if @like.save
@@ -17,7 +17,6 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @product = Product.find_by(id: params[:product_id])
     @like = Like.find(params[:id])
     if @like.destroy
       flash[:notice] = 'Like succesfully deleted'
@@ -32,5 +31,9 @@ class LikesController < ApplicationController
 
   def like_params
     params.require(:like).permit(:user_id, :product_id)
+  end
+
+  def find_product
+    @product = Product.find_by(id: params[:product_id])
   end
 end

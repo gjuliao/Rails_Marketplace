@@ -24,7 +24,7 @@
                       <% if @like %>
                       <div class="d-flex">
                         <div class="d-flex align-items-center mx-2">
-                          <%= form_with model: @like,  url: user_product_like_path([current_user, @product, @like]), local: true, method: :delete do |form| %>
+                          <%= form_with model: @like,  url: user_product_like_path(current_user, @product, @like), method: :delete, local: true do |form| %>
                               <%= form.hidden_field :product_id, value: @product.id %>
                               <%= form.hidden_field :user_id, value: current_user.id %>
                               <%= button_tag(type: 'submit', class: 'border-0 bg-white') do %>
