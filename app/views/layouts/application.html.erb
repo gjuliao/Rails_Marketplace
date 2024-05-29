@@ -15,12 +15,19 @@
     <!-- Responsive navbar-->
     <%= render 'shared/nav' %>
 
-    <% if flash.any? %>
-    <div class="container"> 
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+    <div class="container my-4">
+      <% if flash.any? %>
+        <div> 
+          <% flash.each do |key, message| %>
+            <div class="alert <%= key == 'notice' ? 'alert-success' : 'alert-danger' %>" role="alert">
+              <div class="btn">
+                <%= message %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
-    <% end %>
 
     <%= yield %>
   </body>

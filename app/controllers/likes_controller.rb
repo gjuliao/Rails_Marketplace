@@ -23,7 +23,7 @@ class LikesController < ApplicationController
       redirect_to user_product_path(current_user, @product)
     else
       flash.now[:alert] = 'Like not deleted.  Please try again'
-      redirect_to root_path
+      render root_path
     end
   end
 
