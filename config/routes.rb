@@ -4,16 +4,18 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :products do
-      resources :comments, :likes, :events
+      resources :comments, :likes, :events, :bookings
     end
     member do
       get 'my_products', to: 'products#my_products'
       get 'my_events', to: 'events#my_events'
+      get 'purchase', to: 'bookings#purchase_event'
     end
   end
 
   get 'all_products', to: 'products#all_products', as: 'all_products'
   get 'all_events', to: 'events#all_events', as: 'all_events'
+ 
 
   # get "/users/:user_id/products", to: "products#index"
   # get "/users/:user_id/products/:id/edit", to: "products#edit"
