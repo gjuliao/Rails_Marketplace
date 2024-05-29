@@ -4,10 +4,10 @@
         <div class="col-sm-12 col-md-8">
         <% if @users_events.any? %>
             <% @users_events.each do |event| %>
-                <div class="card my-3">
+                <div class="card my-3 border-0 shadow p-3 mb-5 bg-body-tertiary rounded">
                         <div class="card-header"><%= event.product.name %></div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Start date: <%= event.start_date %> | End date: <%= event.end_date %></li>
+                            <li class="list-group-item m-auto"><span class="fw-bold">Start date:</span> <%= event.start_date %> | <span class="fw-bold">End date: </span><%= event.end_date %>   | <span class="fw-bold">total sits: </span> <%= event.total_sits %>  </li>
                         </ul>
                 </div>
             <% end %>
