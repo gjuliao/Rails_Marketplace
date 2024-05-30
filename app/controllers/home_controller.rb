@@ -5,12 +5,11 @@ class HomeController < ApplicationController
     @q_events = Event.ransack(params[:q])
     @q_products = Product.ransack(params[:q])
 
-    @events = @q_events.result(distinct: true)
-    @products = @q_products.result(distinct: true)
+    @events = @q_events.result(distinct: true).paginate(page: params[:events_page], per_page: 5)
+    @products = @q_products.result(distinct: true).paginate(page: params[:products_page], per_page: 5)
 
-    @results = @events + @products
+    @results = (@events + @products).sort_by(&:created_at)
 
-    @results = @results.sort_by(&:created_at)
     @categories = Category.all
 
     @all_products = Product.all
