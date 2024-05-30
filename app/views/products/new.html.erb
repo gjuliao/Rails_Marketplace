@@ -1,4 +1,4 @@
-<div class="container my-4">
+<div class="bg-warning py-5">
 <h1 class="my-4 mx-auto text-center">Create a new product</h1>
   <div class="col-12 col-md-6 mx-auto">
   <%= form_with model: @product, url: user_products_path do |form| %>
@@ -14,8 +14,8 @@
       </div>
     <% end %>
     <div class="d-flex justify-content-between my-3">
-      <%= form.label :category_id, "Select category:", class: "form-label" %><br>
-      <%= form.collection_select :category_id, Category.all, :id, :name, prompt: 'Default category', class: "form-control" %>
+      <%= form.label :category_id, "Select category:", class: "form-label fw-bold" %><br>
+      <%= form.collection_select :category_id, Category.all, :id, :name, prompt: 'Default category', class: "bg-primary" %>
     </div>
     <div class="my-3">
       <%= form.label :name, "Products Name:", class: "form-label" %><br>
@@ -31,7 +31,7 @@
     </div>
     <%= form.hidden_field :owner_id, value: current_user.id %>
     <div class="mt-4">
-      <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+      <%= button_tag(type: 'submit', class: 'btn btn-primary w-100') do %>
         <i class="bi bi-send"></i>
       <% end %>
     </div>

@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :find_product, only: %w[edit update destroy]
   def index
     @products = Product.all
     @user = current_user
@@ -24,12 +25,9 @@ class ProductsController < ApplicationController
     end
   end
 
-  def edit
-    @product = Product.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @product = Product.find(params[:id])
     if @product.update!(product_params)
       flash[:notice] = 'Product was succesfully update!'
       redirect_to user_product_path(current_user, @product)
@@ -40,7 +38,6 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find(params[:id])
     if @product.destroy
       flash[:notice] = 'Product was deleted succesfully!'
       redirect_to products_path
@@ -62,5 +59,9 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :description, :assistants, :comments, :owner_id, :category_id)
+  end
+
+  def find_product
+    @product = Product.find(params[:id])
   end
 end

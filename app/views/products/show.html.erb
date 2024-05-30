@@ -4,7 +4,7 @@
         <div class="col-8">
             <!-- Featured blog post-->
             <div class="card mb-4 border-0 shadow p-3 mb-5 bg-body-tertiary rounded">
-                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                <a href="#!"><img class="w-100" src="https://picsum.photos/id/73/900/600" style=" height: 500px"/></a>
                 <div class="card-body">
                     <div class="small text-muted"><p><%= @product.category.name %></p></div>
                     <h2 class="card-title"><%= @product.name %></h2>
@@ -24,7 +24,7 @@
                       <% if @like %>
                       <div class="d-flex">
                         <div class="d-flex align-items-center mx-2">
-                          <%= form_with model: @like,  url: user_product_like_path([current_user, @product, @like]), local: true, method: :delete do |form| %>
+                          <%= form_with model: @like,  url: user_product_like_path(current_user, @product, @like), method: :delete, local: true do |form| %>
                               <%= form.hidden_field :product_id, value: @product.id %>
                               <%= form.hidden_field :user_id, value: current_user.id %>
                               <%= button_tag(type: 'submit', class: 'border-0 bg-white') do %>
@@ -42,29 +42,33 @@
                               <i class="bi bi-hand-thumbs-up" style="font-size: 1.5rem; color: blue;"></i>
                             <% end %>
                         <% end %>
-                      <% end %>
                       <p class="my-auto"><%= @product.likes.count %></p>
+                      <% end %>
                     </div>
                 </div>
             </div>
             <div>
-              <div class="d-flex">
-                <%= link_to 'Add a Comment', new_user_product_comment_path(current_user, @product), class: 'btn btn-info' %>
-                <% if @product.events.any? %>
-                  <%= link_to 'View product events', user_product_events_path(@product.owner_id, @product ), class: 'btn btn-info' %>
-                <% else %>
-                  <p>This product doesnt have an event yet!</p>
-                <% end %>
+              <% if @product.events.any? %>
+                <div class="d-flex my-4 justify-content-between">
+                    <%= link_to 'Add a Comment', new_user_product_comment_path(current_user, @product), class: 'btn btn-info' %>
+                    <%= link_to 'View product events', user_product_events_path(@product.owner_id, @product ), class: 'btn btn-info ml-auto' %>
+                  <% else %>
+                <div class="my-4">
+                    <%= link_to 'Add a Comment', new_user_product_comment_path(current_user, @product), class: 'btn btn-info' %>
+                    <p class="my-4"><span class="fw-bold">Note:</span>This product doesnt have an event yet!</p>
+                </div>
+              <% end %>
+
                 <% if current_user.id == @product.owner_id %>
                   <%= link_to 'Create Event', new_user_product_event_path(current_user, @product), class: 'btn btn-info mx-2' %>
                 <% end %>
               </div>
               <% @product.comments.each do |comment| %>
-                <div class="card my-4 border border-light-subtle">
-                  <div class="card-header">
-                    <%= comment.author.fname %>
+                <div class="card my-5 border-0 shadow p-3 mb-5 bg-body-tertiary">
+                  <div class="card-header border-0">
+                    <p><span class="fw-bold">Author:</span> <%= comment.author.fname %></p>
                   </div>
-                  <div class="card-body">
+                  <div class="card-body border-0">
                     <%= comment.text %>
                   </div>
                 </div>

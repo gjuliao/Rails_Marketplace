@@ -1,5 +1,6 @@
     
-    <div class="container my-5">
+    <div class="py-5 bg-warning">
+    <div class="container">
     <h1>My products</h1>
         <!-- Row -->
         <div class="row">
@@ -7,9 +8,8 @@
                 <% @users_products.each do |product| %>
                     <div class="col-sm-4 col-12 justify-content-center my-3">
                         <!-- Card -->
-                        <div class="card">
-                            <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                            <!-- Card body -->
+                        <div class="card border-0 shadow p-3 mb-5 bg-body-tertiary rounded">
+                            <a href="#!"><img class="w-100" src="https://picsum.photos/id/73/900/600" style=" height: 300px"/></a>                            <!-- Card body -->
                             <div class="card-body">
                                 <h5 class="card-title"><%= product.name %></h5>
                                 <p class="card-text"><%= product.description %></p>
@@ -53,3 +53,4 @@
             <% end %>
         </div>
     </div>
+</div>
