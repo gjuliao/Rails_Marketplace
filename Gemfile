@@ -71,5 +71,6 @@ gem 'cssbundling-rails'
 gem 'devise', '~> 4.9'
 gem 'ransack'
 gem 'rubocop', '>= 1.0', '< 2.0'
+gem 'will_paginate', '~> 4.0'
 
 gem 'byebug', '~> 11.1', groups: %i[development test]
