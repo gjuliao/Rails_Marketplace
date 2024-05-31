@@ -6,6 +6,7 @@ class Product < ApplicationRecord
   has_many :events, dependent: :destroy, counter_cache: true
 
   validates :name, :description, :assistants, presence: true
+  validates :description, length: { minimum: 11, maximum: 100 }
 
   before_validation :set_default_category, on: :create
 
