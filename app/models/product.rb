@@ -7,6 +7,7 @@ class Product < ApplicationRecord
 
   validates :name, :description, :assistants, presence: true
   validates :description, length: { minimum: 11, maximum: 100 }
+  validates :name, length: { minimum: 10, maximum: 50 }
 
   before_validation :set_default_category, on: :create
 
