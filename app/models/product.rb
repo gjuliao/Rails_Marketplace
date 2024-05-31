@@ -16,11 +16,15 @@ class Product < ApplicationRecord
        likes_counter name owner_id updated_at]
   end
 
-  private
-
   def recent_comments
     comments.order(created_at: :desc)
   end
+  
+  def older_comments
+    comments.order(created_at: :asc)
+  end
+  
+  private
 
   def set_default_category
     self.category ||= Category.find_or_create_by(name: 'Default')

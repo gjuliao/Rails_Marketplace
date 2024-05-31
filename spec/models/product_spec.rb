@@ -6,7 +6,7 @@ RSpec.describe Product, type: :model do
     let(:product) do
       Product.create!(name: 'Testing', description: 'This is a testing description', assistants: 5, owner_id: user.id)
     end
-    # let(:category) { Category.find_or_create_by(name: 'Default') }
+     # let(:category) { Category.find_or_create_by(name: 'Default') }
 
     it 'creates product succesfully' do
       user = User.create(fname: 'Frank', lname: 'Test', email: 'giotest@gmail.com', password: '1233456')
@@ -41,29 +41,52 @@ RSpec.describe Product, type: :model do
   end
 
   context 'comments in product validation' do
+      let(:user) { User.create!(fname: 'Frank', lname: 'Test', email: 'giotest@gmail.com', password: '1233456') }
+      let(:product) do
+        Product.create!(name: 'Testing', description: 'This is a testing description', assistants: 5, owner_id: user.id)
+      end
+
+      let(:comment) do
+        Comment.create!(text: 'This is a test comment in product', author_id: user.id, product_id: product.id)
+      end
+
+      before do
+        Comment.create!(text: 'This is a test comment in product', author_id: user.id, product_id: product.id)
+        Comment.create!(text: 'This is a test comment in product', author_id: user.id, product_id: product.id)
+        Comment.create!(text: 'This is a test comment in product', author_id: user.id, product_id: product.id)
+      end
+
+      it 'Product has a comment' do
+        expect(comment).to be_valid
+      end
+
+      it 'Product has a comment count of 3' do
+        expect(product.comments.count).to eq(3)
+      end
+
+      it 'Product comments are displayed in order from descending order' do
+        expect(product.comments.count).to eq(3)
+      end
+  end
+
+  context 'Descending comment order in product' do
     let(:user) { User.create!(fname: 'Frank', lname: 'Test', email: 'giotest@gmail.com', password: '1233456') }
     let(:product) do
       Product.create!(name: 'Testing', description: 'This is a testing description', assistants: 5, owner_id: user.id)
     end
 
-    let(:comment) do
-      Comment.create!(text: 'This is a test comment in product', author_id: user.id, product_id: product.id)
+    let!(:comment1) { Comment.create!(text: 'First comment', author_id: user.id, product_id: product.id, created_at: 1.day.ago) }
+    let!(:comment2) { Comment.create!(text: 'Second comment', author_id: user.id, product_id: product.id, created_at: 2.days.ago) }
+    let!(:comment3) { Comment.create!(text: 'Third comment', author_id: user.id, product_id: product.id, created_at: 3.days.ago) }
+
+    it 'Testing order of creation ascending' do
+      recent_comments = product.older_comments
+      expect(recent_comments).to eq([comment3, comment2, comment1])
     end
 
-    before do
-      Comment.create!(text: 'This is a test comment in product', author_id: user.id, product_id: product.id)
-
-      Comment.create!(text: 'This is a test comment in product', author_id: user.id, product_id: product.id)
-
-      Comment.create!(text: 'This is a test comment in product', author_id: user.id, product_id: product.id)
-    end
-
-    it 'Product has a comment' do
-      expect(comment).to be_valid
-    end
-
-    it 'Product has a comment count of 3' do
-      expect(product.comments.count).to eq(3)
+    it 'Testing order of creation descending' do
+      older_comments = product.recent_comments
+      expect(older_comments).to eq([comment1, comment2, comment3])
     end
   end
 end
