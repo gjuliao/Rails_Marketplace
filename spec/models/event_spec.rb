@@ -18,14 +18,6 @@ RSpec.describe Event, type: :model do
     end
 
       it 'Check if event is valid' do
-        event = Event.create!(
-          start_date: Date.today,
-          end_date: Date.today + 1,
-          start_time: Time.current,
-          end_time: Time.current + 5,
-          product_id: product.id,
-          user_id: user.id
-        )
         expect(event).to be_valid
       end
 
