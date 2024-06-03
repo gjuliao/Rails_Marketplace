@@ -23,6 +23,10 @@ class Product < ApplicationRecord
   def older_comments
     comments.order(created_at: :asc)
   end
+
+  def likes_counter
+    likes.count
+  end
   
   private
 
