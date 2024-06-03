@@ -17,17 +17,17 @@ RSpec.describe Event, type: :model do
       )
     end
 
-      it 'Check if event is valid' do
-        expect(event).to be_valid
-      end
+    it 'Check if event is valid' do
+      expect(event).to be_valid
+    end
 
-      it 'has the correct user' do
-        expect(event.user).to eq user
-      end
+    it 'has the correct user' do
+      expect(event.user).to eq user
+    end
 
-      it 'has the correct product' do
-        expect(event.product).to eq product
-      end
+    it 'has the correct product' do
+      expect(event.product).to eq product
+    end
   end
 
   context 'Checking validation of events params' do

@@ -19,7 +19,7 @@ class Product < ApplicationRecord
   def recent_comments
     comments.order(created_at: :desc)
   end
-  
+
   def older_comments
     comments.order(created_at: :asc)
   end
@@ -27,7 +27,7 @@ class Product < ApplicationRecord
   def likes_counter
     likes.count
   end
-  
+
   private
 
   def set_default_category
