@@ -13,7 +13,9 @@ RSpec.describe Event, type: :model do
         start_time: Time.current,
         end_time: Time.current + 5,
         product_id: product.id,
-        user_id: user.id
+        user_id: user.id,
+        remaining_sits: 5,
+        total_sits: 10
       )
     end
 
@@ -36,17 +38,56 @@ RSpec.describe Event, type: :model do
       Product.create!(name: 'Test product', description: 'this is test description', owner_id: user.id, assistants: 5)
     end
 
-    it 'Validate end date after start date' do
-      event =
+      it 'Validate end date after start date' do
+        event =
+          Event.create(
+            start_date: Date.today,
+            end_date: Date.today - 1,
+            start_time: Time.current,
+            end_time: Time.current + 5,
+            product_id: product.id,
+            user_id: user.id,
+            remaining_sits: 5,
+            total_sits: 10
+          )
+        expect(event).to_not be_valid
+      end
+    end
+
+    context 'Validating product event count' do
+      let(:user) { User.create!(fname: 'mike', lname: 'Yoki', email: 'test@gmail.com', password: '123456') }
+      let(:product) do
+        Product.create!(name: 'Test product', description: 'this is test description', owner_id: user.id, assistants: 5)
+      end
+
+      before do
         Event.create(
           start_date: Date.today,
-          end_date: Date.today - 1,
+          end_date: Date.today + 1,
           start_time: Time.current,
           end_time: Time.current + 5,
           product_id: product.id,
-          user_id: user.id
+          user_id: user.id,
+          remaining_sits: 5,
+          total_sits: 10
         )
-      expect(event).to_not be_valid
-    end
+  
+        Event.create(
+          start_date: Date.today,
+          end_date: Date.today + 1,
+          start_time: Time.current,
+          end_time: Time.current + 5,
+          product_id: product.id,
+          user_id: user.id,
+          remaining_sits: 5,
+          total_sits: 10
+        )
+      end
+
+      it 'product event count equals 2' do
+        expect(product.events.count).to eq 2
+      end
   end
+
+    context 'validating'
 end
