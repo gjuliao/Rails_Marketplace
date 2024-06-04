@@ -6,6 +6,8 @@ class Product < ApplicationRecord
   has_many :events, dependent: :destroy, counter_cache: true
 
   validates :name, :description, :assistants, presence: true
+  validates :description, length: { minimum: 11, maximum: 100 }
+  validates :name, length: { minimum: 3, maximum: 50 }
 
   before_validation :set_default_category, on: :create
 
@@ -14,11 +16,19 @@ class Product < ApplicationRecord
        likes_counter name owner_id updated_at]
   end
 
-  private
-
   def recent_comments
     comments.order(created_at: :desc)
   end
+
+  def older_comments
+    comments.order(created_at: :asc)
+  end
+
+  def likes_counter
+    likes.count
+  end
+
+  private
 
   def set_default_category
     self.category ||= Category.find_or_create_by(name: 'Default')

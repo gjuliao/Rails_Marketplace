@@ -2,6 +2,17 @@ class Event < ApplicationRecord
   belongs_to :product
   belongs_to :user
   has_many :bookings
+  validates :end_date, comparison: { greater_than: :start_date }
+  validates :end_time, comparison: { greater_than: :start_time }
+  validates :start_date,
+            :end_date,
+            :start_time,
+            :end_time,
+            :total_sits,
+            :remaining_sits,
+            :product_id,
+            :user_id,
+            presence: true
 
   def self.ransackable_associations(_auth_object = nil)
     %w[product user]
