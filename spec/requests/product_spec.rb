@@ -52,5 +52,12 @@ RSpec.describe "Products", type: :request do
       expect(response).to have_http_status(:redirect)
     end
 
+    it 'destroy method' do
+      product = Product.create!(name: 'Testing', description: 'This is a testing description', assistants: 5, owner_id: user.id)
+      delete "/users/#{user.id}/products/#{product.id}", params: { user:, product: }
+      puts response.body
+      expect(response).to have_http_status(:redirect)
+    end
+
   end
 end
