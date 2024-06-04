@@ -10,26 +10,47 @@ RSpec.describe "Products", type: :request do
 
   before do
     sign_in user
-    Product.create(name: 'Testing', description: 'This is a testing description', assistants: 5, owner_id: user.id)
   end
 
-  it 'GET /index' do
-    get root_path
-    expect(response).to have_http_status(:success)
+  context 'Get requests for products' do
+    it 'GET /index' do
+      get root_path
+      expect(response).to have_http_status(:success)
+    end
+  
+    it 'GET users/:user_id/myproducts' do
+      get my_products_user_path(user)
+      expect(response).to have_http_status(:success)
+    end
+    it 'GET users/:user_id/products/new' do
+      get new_user_product_path(user)
+      expect(response).to have_http_status(:success)
+    end
+  
+    it 'GET users/:user_id/products/:product_id/edit' do
+      get edit_user_product_path(user, product)
+      expect(response).to have_http_status(:success)
+    end
   end
 
-  it 'GET users/:user_id/myproducts' do
-    get my_products_user_path(user)
-    expect(response).to have_http_status(:success)
-  end
+  context 'Post requests for product' do
+    before do
+      sign_in user
+    end
+    
+    it 'create method' do
+      product = { name: 'testing', description: 'This is a test description to test', assistants: 5, owner_id: user.id }
+      post "/users/#{user.id}/products", params: { user:, product: }
+      expect(response).to have_http_status(:redirect)
+    end
 
-  it 'GET users/:user_id/products/new' do
-    get new_user_product_path(user)
-    expect(response).to have_http_status(:success)
-  end
+    it 'update method' do
+      product = Product.create!(name: 'Testing', description: 'This is a testing description', assistants: 5, owner_id: user.id)
+      product_edit = { name: 'testing', description: 'This is a test description to test', assistants: 5, owner_id: user.id }
+      patch "/users/#{user.id}/products/#{product.id}", params: { user:, product: product_edit }
+      puts response.body
+      expect(response).to have_http_status(:redirect)
+    end
 
-  it 'GET users/:user_id/products/:product_id/edit' do
-    get edit_user_product_path(user, product)
-    expect(response).to have_http_status(:success)
   end
 end
