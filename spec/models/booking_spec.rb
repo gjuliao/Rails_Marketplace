@@ -20,6 +20,8 @@ RSpec.describe Booking, type: :model do
     end
 
     it 'Valid booking creation' do
+      booking = Booking.create!(event_id: event.id, customer_id: user.id, no_of_tickets: 2)
+      expect(booking).to be_valid
     end
   end
 end
