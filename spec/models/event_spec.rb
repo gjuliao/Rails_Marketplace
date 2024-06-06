@@ -89,5 +89,4 @@ RSpec.describe Event, type: :model do
     end
   end
 
-  context 'validating'
 end
