@@ -7,12 +7,12 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.create(bookings_params)
-    if @booking.save!
+    @booking = Booking.new(bookings_params)
+    if @booking.save
       flash[:notice] = 'Booking created succesfully'
       redirect_to root_path
     else
-      flash.now[:alert] = 'Booking not created succesfully'
+      flash.now[:alert] = @booking.errors.full_messages.join(', ')
       render :new
     end
   end
