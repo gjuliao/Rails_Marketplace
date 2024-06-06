@@ -6,7 +6,17 @@ class Booking < ApplicationRecord
 
   after_create :update_event_remaining_sits
 
+  validate :validate_remaining_sits
+
   def update_event_remaining_sits
     event.decrement(:remaining_sits, no_of_tickets).save
+  end
+
+  private
+
+  def validate_remaining_sits
+    if no_of_tickets > event.remaining_sits
+      errors.add(:no_of_tickets, 'Cant be greater than number of sits')
+    end
   end
 end
