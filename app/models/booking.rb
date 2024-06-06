@@ -15,8 +15,8 @@ class Booking < ApplicationRecord
   private
 
   def validate_remaining_sits
-    if no_of_tickets > event.remaining_sits
-      errors.add(:no_of_tickets, 'Cant be greater than number of sits')
-    end
+    return unless no_of_tickets > event.remaining_sits
+
+    errors.add(:no_of_tickets, 'Cant be greater than number of sits')
   end
 end
