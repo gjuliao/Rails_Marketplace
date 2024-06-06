@@ -14,7 +14,7 @@ RSpec.describe Booking, type: :model do
         end_time: Time.current + 5,
         product_id: product.id,
         user_id: user.id,
-        remaining_sits: 5,
+        remaining_sits: 10,
         total_sits: 10
       )
     end
@@ -31,7 +31,7 @@ RSpec.describe Booking, type: :model do
 
     it 'updates event remaining sits' do
       Booking.create!(event_id: event.id, customer_id: user.id, no_of_tickets: 2)
-      expect(event.reload.remaining_sits).to eq 3
+      expect(event.reload.remaining_sits).to eq 8
     end
   end
 end
