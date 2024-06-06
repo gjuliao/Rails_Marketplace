@@ -14,6 +14,12 @@ class Event < ApplicationRecord
             :user_id,
             presence: true
 
+  before_create :set_remaining_sits
+
+  def set_remaining_sits
+    self.remaining_sits = total_sits
+  end
+
   def self.ransackable_associations(_auth_object = nil)
     %w[product user]
   end

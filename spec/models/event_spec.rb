@@ -88,6 +88,4 @@ RSpec.describe Event, type: :model do
       expect(product.events.count).to eq 2
     end
   end
-
-  context 'validating'
 end

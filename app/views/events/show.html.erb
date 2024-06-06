@@ -17,7 +17,7 @@
                         </div>
                         <% end %>
                     </div>
-                    <% if current_user.id == @product.owner_id %>
+                    <% if current_user.id == !@product.owner_id %>
                         <%= link_to purchase_event_path(current_user, @product, @event), class: 'btn btn-secondary bg-white border-0' do %>
                         <i class="bi bi-pencil-square" style="font-size: 1.5rem; color: blue;"></i>
                         <% end %>
