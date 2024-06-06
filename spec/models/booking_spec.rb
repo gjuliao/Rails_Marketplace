@@ -23,5 +23,15 @@ RSpec.describe Booking, type: :model do
       booking = Booking.create!(event_id: event.id, customer_id: user.id, no_of_tickets: 2)
       expect(booking).to be_valid
     end
+
+    it 'Validate presence of no_of_sits in booking creation' do
+      booking = Booking.new(event_id: event.id, customer_id: user.id)
+      expect(booking).to_not be_valid
+    end
+
+    it 'updates event remaining sits' do
+      Booking.create!(event_id: event.id, customer_id: user.id, no_of_tickets: 2)
+      expect(event.reload.remaining_sits).to eq 3
+    end
   end
 end
